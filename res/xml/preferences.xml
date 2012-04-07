@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+	<PreferenceCategory android:title="@string/preferenceServiceCategory">
+       
+		<EditTextPreference android:title="@string/preferenceUsernameName" 
+		    android:summary="@string/preferenceUsernameSummary"/>
+		
+		<EditTextPreference android:title="@string/preferencePasswordName"  
+		    android:summary="@string/preferencePasswordSummary"
+		    android:password="true"
+		    />
+                
+		<EditTextPreference android:title="@string/preferenceServiceUriName" 
+		    android:summary="@string/preferenceServiceUriSummary"/>
+                
+	</PreferenceCategory>
+	
+	<PreferenceCategory android:title="@string/preferenceApplicationCategory">
+	    
+	    <EditTextPreference android:title="@string/preferenceTimelineEntriesName"
+		    android:summary="@string/preferenceTimelineEntriesSummary"
+		    android:key="maxTimelineEntries" />
+	    
+	    <EditTextPreference android:title="@string/preferenceStatusCharactersName"
+		    android:summary="@string/preferenceStatusCharactersSummary"
+		    android:key="maxCharStatus" />
+	    
+	</PreferenceCategory>
+  
+</PreferenceScreen>

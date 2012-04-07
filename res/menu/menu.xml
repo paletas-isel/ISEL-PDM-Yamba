@@ -1,0 +1,15 @@
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        
+        <item android:id="@+id/create_status"
+            android:title="@string/create_status" />
+                
+        <item android:id="@+id/show_timeline"
+            android:title="@string/timeline" />
+        
+        <item android:id="@+id/refresh_timeline"
+            android:title="@string/refresh_timeline" />
+        
+        <item android:id="@+id/show_settings"
+            android:title="@string/settings" />
+        
+    </menu>

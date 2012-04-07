@@ -7,4 +7,24 @@
     <string name="buttonUpdate">Submit</string>
     <string name="buttonBusy">Updating</string>
     <string name="maxChars">140</string>
+    
+    <!-- Preference -->
+    <string name="preferenceUsernameSummary">Your username in the service.</string>
+    <string name="preferenceUsernameName">Username</string>
+    <string name="preferencePasswordSummary">The username\'s password.</string>
+    <string name="preferencePasswordName">Password</string>
+    <string name="preferenceServiceUriSummary">The location of the service.</string>
+    <string name="preferenceServiceUriName">Service URI</string>
+    <string name="preferenceTimelineEntriesSummary">The max number of entries shown in the timeline.</string>
+    <string name="preferenceTimelineEntriesName">Max Shown Entries</string>
+    <string name="preferenceStatusCharactersSummary">The maximum size of a status.</string>
+    <string name="preferenceStatusCharactersName">Status Maximum Size</string>
+    <string name="preferenceServiceCategory">Service</string>
+    <string name="preferenceApplicationCategory">Application</string>
+    
+    <!-- Menu -->    
+    <string name="create_status">New Status</string>
+    <string name="timeline">Timeline</string>
+    <string name="refresh_timeline">Refresh</string>
+    <string name="settings">Settings</string>
 </resources>

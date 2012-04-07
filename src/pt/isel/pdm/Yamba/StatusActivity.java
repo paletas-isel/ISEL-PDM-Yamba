@@ -1,7 +1,6 @@
 package pt.isel.pdm.Yamba;
 
 import winterwell.jtwitter.Twitter;
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-public class StatusActivity extends Activity implements OnClickListener, TextWatcher {
+public class StatusActivity extends MenuActivity implements OnClickListener, TextWatcher {
 	private static final String TAG = "PDM";
 	private Button submit;
 	private EditText text;
@@ -28,9 +27,9 @@ public class StatusActivity extends Activity implements OnClickListener, TextWat
         text.addTextChangedListener(this);
         charsCount = (TextView) findViewById(R.id.charLeft);
         
-        updateCharCount(text.getText());
+        updateCharCount(text.getText());       
     }
-    
+        
     private static final long TOTAL_TM = 10000; // 10 secs.
     
 	public void onClick(View v) {
