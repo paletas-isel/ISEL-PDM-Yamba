@@ -5,15 +5,18 @@
 	<PreferenceCategory android:title="@string/preferenceServiceCategory">
        
 		<EditTextPreference android:title="@string/preferenceUsernameName" 
-		    android:summary="@string/preferenceUsernameSummary"/>
+		    android:summary="@string/preferenceUsernameSummary"
+		    android:key="username"/>
 		
 		<EditTextPreference android:title="@string/preferencePasswordName"  
 		    android:summary="@string/preferencePasswordSummary"
+		    android:key="password"
 		    android:password="true"
 		    />
                 
 		<EditTextPreference android:title="@string/preferenceServiceUriName" 
-		    android:summary="@string/preferenceServiceUriSummary"/>
+		    android:summary="@string/preferenceServiceUriSummary"
+		    android:key="serviceUri"/>
                 
 	</PreferenceCategory>
 	
@@ -21,11 +24,15 @@
 	    
 	    <EditTextPreference android:title="@string/preferenceTimelineEntriesName"
 		    android:summary="@string/preferenceTimelineEntriesSummary"
-		    android:key="maxTimelineEntries" />
+		    android:key="maxTimelineEntries"
+		    android:defaultValue="20"
+		    android:inputType="number" />
 	    
 	    <EditTextPreference android:title="@string/preferenceStatusCharactersName"
 		    android:summary="@string/preferenceStatusCharactersSummary"
-		    android:key="maxCharStatus" />
+		    android:key="maxCharStatus"
+		    android:defaultValue="140"
+		    android:inputType="number" />
 	    
 	</PreferenceCategory>
   
