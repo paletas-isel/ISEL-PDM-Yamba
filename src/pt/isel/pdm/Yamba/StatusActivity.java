@@ -1,6 +1,6 @@
 package pt.isel.pdm.Yamba;
 
-import winterwell.jtwitter.Twitter;
+import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 	private EditText text;
 	private TextView charsCount;
 	
-	private String username = null, password, serviceUri;	
+	private String username = null, password;	
 	private int maxChar = -1;
 	private SharedPreferences _preferences;
 	
@@ -50,9 +50,13 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 
 	private void updateStatus() {		
 		long startTm = System.currentTimeMillis();
-		Twitter twitter = new Twitter(username, password);
+		/*Twitter twitter = new Twitter(username, password);
 		twitter.setAPIRootUrl(serviceUri);
+		twitter.updateStatus(text.getText().toString());*/
+		
+		TwitterAsync twitter = TwitterAsync.connect(username, password);
 		twitter.updateStatus(text.getText().toString());
+		
 		long elapsedTm = System.currentTimeMillis()-startTm;
     	Log.d(TAG,"Submited. Elapsed time="+elapsedTm+", text="+text);
 	}
@@ -72,11 +76,6 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 		
 		if(name == null || name.equalsIgnoreCase("password")) {
 			password = _preferences.getString("password", null);
-			changedPreference = true;
-		}
-		
-		if(name == null || name.equalsIgnoreCase("serviceUri")) {
-			serviceUri = _preferences.getString("serviceUri", null);
 			changedPreference = true;
 		}
 		
