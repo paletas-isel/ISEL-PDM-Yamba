@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="titleStatus">Atualização de Estado</string>
-    <string name="hintText">Escreva o estado em 140 carateres</string>
+    <string name="app_name">Yamba PDM</string>
+    <string name="titleYamba">Yamba PDM</string>
+    <string name="titleStatus">Actualizar Estado</string>
+    <string name="hintText">Por favor, insira o seu estado...</string>
     <string name="buttonUpdate">Enviar</string>
-    <string name="buttonBusy">A ser enviado</string>
+    <string name="buttonBusy">A actualizar</string>
+    
+    <!-- Preference -->
+    <string name="preferenceUsernameSummary">O seu nome de utilizador.</string>
+    <string name="preferenceUsernameName">Nome de Utilizador</string>
+    <string name="preferencePasswordSummary">A palavra-chave do utilizador.</string>
+    <string name="preferencePasswordName">Palavra-Chave</string>
+    <string name="preferenceServiceUriSummary">A localização do serviço.</string>
+    <string name="preferenceServiceUriName">URI do Serviço</string>
+    <string name="preferenceTimelineEntriesSummary">O número de entradas na timeline.</string>
+    <string name="preferenceTimelineEntriesName">Número de entradas</string>
+    <string name="preferenceStatusCharactersName">Tamanho máximo do estado.</string>
+    <string name="preferenceServiceCategory">Serviço</string>
+    <string name="preferenceApplicationCategory">Aplicação</string>
+    
+    <!-- Menu -->    
+    <string name="create_status">Novo Estado</string>
+    <string name="timeline">Timeline</string>
+    <string name="refresh_timeline">Carregar</string>
+    <string name="settings">Preferências</string>
+    
+    <!-- Timeline -->
+    <string name="timelineLoading">A carregar a timeline...</string>
+    
+    <!-- Details -->
+    <string name="detailsTitle">Detalhes</string>
+    
+    <!-- Error -->
+    <string name="errorTitle">Erro</string>
+    <string name="errorMessage">Isto é embaraçoso! Aconteceu um erro...</string>
 </resources>

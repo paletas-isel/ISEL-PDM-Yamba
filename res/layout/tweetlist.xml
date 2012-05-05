@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tweetListLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView 
+        android:id="@+id/tweetAuthor"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="left"
+	    android:textColor="@color/status_author"/>
+    <TextView 
+        android:id="@+id/tweetStatus"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"/>
+    
+    <TextView 
+        android:id="@+id/tweetPublicationTime"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:gravity="right"/>
+    
+</LinearLayout>

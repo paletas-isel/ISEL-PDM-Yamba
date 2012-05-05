@@ -4,6 +4,6 @@ import winterwell.jtwitter.Twitter.Status;
 
 public interface StatusPublishedListener {
 
-	public void OnStatusPublished(Status status);
+	public void onStatusPublished(Status status);
 	
 }

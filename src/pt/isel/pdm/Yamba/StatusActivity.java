@@ -1,6 +1,8 @@
 package pt.isel.pdm.Yamba;
 
 import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.Yamba.TwitterAsync.listeners.StatusPublishedListener;
+import winterwell.jtwitter.Twitter.Status;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -8,19 +10,25 @@ import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.*;
 
-public class StatusActivity extends MenuActivity implements OnClickListener, TextWatcher, OnSharedPreferenceChangeListener {
+public class StatusActivity extends MenuActivity implements OnClickListener, TextWatcher, OnSharedPreferenceChangeListener, StatusPublishedListener {
 	private static final String TAG = "PDM";
 	private Button submit;
 	private EditText text;
 	private TextView charsCount;
 	
-	private String username = null, password;	
 	private int maxChar = -1;
 	private SharedPreferences _preferences;
+	
+	private TwitterAsync twitter;
+	
+	private boolean _sending;
+	
+	private static final String SENDING_KEY = "SENDING";
 	
     /** Called when the activity is first created. */
     @Override
@@ -36,26 +44,52 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 
 		_preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		_preferences.registerOnSharedPreferenceChangeListener(this);
-		updatePreferences(null);
 		
-        updateCharCount(text.getText());       
+		twitter = TwitterAsync.connect();
+		twitter.setStatusPublishedListener(this);
     }   
+    
+    @Override
+	protected void onResume() {
+		super.onResume();
+
+		twitter.setStatusPublishedListener(this);
+		updatePreferences(null);   
+		
+		if(_sending)
+			disableSubmit();
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+		super.onRestoreInstanceState(savedInstanceState);
+		
+		_sending = savedInstanceState.getBoolean(SENDING_KEY);
+	}
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		
+		outState.putBoolean(SENDING_KEY, _sending);
+	}
+
+	@Override
+    protected void doModifyMenu(Menu menu) {
+    	
+    	enableMenuItem(menu, R.id.show_timeline);
+    }
     
 	public void onClick(View v) {
     	Log.d(TAG,"onClick");
     	disableSubmit();
     	updateStatus();
-    	enableSubmit();
 	}
 
 	private void updateStatus() {		
 		long startTm = System.currentTimeMillis();
-		/*Twitter twitter = new Twitter(username, password);
-		twitter.setAPIRootUrl(serviceUri);
-		twitter.updateStatus(text.getText().toString());*/
 		
-		TwitterAsync twitter = TwitterAsync.connect(username, password);
-		twitter.updateStatus(text.getText().toString());
+		twitter.updateStatusAsync(text.getText().toString());
 		
 		long elapsedTm = System.currentTimeMillis()-startTm;
     	Log.d(TAG,"Submited. Elapsed time="+elapsedTm+", text="+text);
@@ -64,21 +98,11 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 	/** Updates the values that are dependent of preferences, and all that depends on those values.
 	 * 
 	 * @param name - The name of the preference to update, or null if all.
-	 * @return
+	 * @return true, if any preferences were changed.
 	 */
 	private boolean updatePreferences(String name) {
 		boolean changedPreference = false;
-		
-		if(name == null || name.equalsIgnoreCase("username")) {
-			username = _preferences.getString("username", null);
-			changedPreference = true;
-		}
-		
-		if(name == null || name.equalsIgnoreCase("password")) {
-			password = _preferences.getString("password", null);
-			changedPreference = true;
-		}
-		
+				
 		if(name == null || name.equalsIgnoreCase("maxCharStatus")) {
 			maxChar = Integer.parseInt(_preferences.getString("maxCharStatus", null));
 			changedPreference = true;	
@@ -93,11 +117,15 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 	private void enableSubmit() {
 		submit.setEnabled(true);
     	submit.setText(R.string.buttonUpdate);
+    	
+		_sending = false;
 	}
 
 	private void disableSubmit() {
 		submit.setEnabled(false);
     	submit.setText(R.string.buttonBusy);
+		
+		_sending = true;
 	}
 
 	public void afterTextChanged(Editable arg0) {
@@ -140,6 +168,13 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
 		
 		updatePreferences(arg1);
+		
+	}
+
+	@Override
+	public void onStatusPublished(Status status) {
+		
+		enableSubmit();
 		
 	}
 }

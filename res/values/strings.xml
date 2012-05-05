@@ -26,4 +26,17 @@
     <string name="timeline">Timeline</string>
     <string name="refresh_timeline">Refresh</string>
     <string name="settings">Settings</string>
+    
+    <!-- Timeline -->
+    <string name="timelineLoading">Loading status...</string>
+    
+    <!-- Details -->
+    <string name="detailsTitle">Details</string>
+    <string name="dateFormat">MM-dd-yyyy HH:mm:ss</string>
+    
+    <!-- Error -->
+    <string name="errorTitle">Error</string>
+    <string name="errorMessage">This is awkward.. An error has occurred!</string>
+    <string name="badCredentials">There was an error logging in, please verify your credentials.</string>
+    <string name="invalidApi">Couldn\'t connect to the API, please verify the URI.</string>
 </resources>
