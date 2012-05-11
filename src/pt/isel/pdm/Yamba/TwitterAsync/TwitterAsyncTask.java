@@ -1,9 +1,9 @@
-package pt.isel.pdm.Yamba.TwitterAsync;
+package pt.isel.pdm.yamba.TwitterAsync;
 
-import pt.isel.pdm.Yamba.exceptions.BadCredentialsException;
-import pt.isel.pdm.Yamba.exceptions.ExceptionWrapper;
-import pt.isel.pdm.Yamba.exceptions.InvalidAPIException;
-import pt.isel.pdm.Yamba.exceptions.TwitterException;
+import pt.isel.pdm.yamba.exceptions.BadCredentialsException;
+import pt.isel.pdm.yamba.exceptions.ExceptionWrapper;
+import pt.isel.pdm.yamba.exceptions.InvalidAPIException;
+import pt.isel.pdm.yamba.exceptions.TwitterException;
 import winterwell.jtwitter.Twitter;
 import android.os.AsyncTask;
 import android.util.Log;

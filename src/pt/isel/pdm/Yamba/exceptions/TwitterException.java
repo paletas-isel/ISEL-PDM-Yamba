@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba.exceptions;
+package pt.isel.pdm.yamba.exceptions;
 
 public abstract class TwitterException extends RuntimeException {
 

@@ -1,15 +1,14 @@
-package pt.isel.pdm.Yamba.TwitterAsync;
+package pt.isel.pdm.yamba.TwitterAsync;
 
 import java.lang.ref.WeakReference;
 
-import pt.isel.pdm.Yamba.TwitterAsync.helpers.StatusContainer;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.StatusPublishedListener;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.TimelineObtainedListener;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.TwitterExceptionListener;
-import pt.isel.pdm.Yamba.TwitterAsync.tasks.GetTimelineAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.tasks.StatusPublicationAsync;
-import pt.isel.pdm.Yamba.exceptions.TwitterException;
-
+import pt.isel.pdm.yamba.TwitterAsync.helpers.StatusContainer;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.TwitterExceptionListener;
+import pt.isel.pdm.yamba.TwitterAsync.tasks.GetTimelineAsync;
+import pt.isel.pdm.yamba.TwitterAsync.tasks.StatusPublicationAsync;
+import pt.isel.pdm.yamba.exceptions.TwitterException;
 import winterwell.jtwitter.Twitter;
 
 public class TwitterAsync {

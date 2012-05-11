@@ -1,10 +1,10 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.TwitterExceptionListener;
-import pt.isel.pdm.Yamba.exceptions.BadCredentialsException;
-import pt.isel.pdm.Yamba.exceptions.InvalidAPIException;
-import pt.isel.pdm.Yamba.exceptions.TwitterException;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.TwitterExceptionListener;
+import pt.isel.pdm.yamba.exceptions.BadCredentialsException;
+import pt.isel.pdm.yamba.exceptions.InvalidAPIException;
+import pt.isel.pdm.yamba.exceptions.TwitterException;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;

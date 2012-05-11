@@ -1,6 +1,6 @@
-package pt.isel.pdm.Yamba.TwitterAsync.listeners;
+package pt.isel.pdm.yamba.TwitterAsync.listeners;
 
-import pt.isel.pdm.Yamba.exceptions.TwitterException;
+import pt.isel.pdm.yamba.exceptions.TwitterException;
 
 public interface TwitterExceptionListener {
 

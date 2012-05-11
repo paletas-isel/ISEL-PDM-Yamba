@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba.TwitterAsync;
+package pt.isel.pdm.yamba.TwitterAsync;
 
 public class TwitterAsyncService {
 	

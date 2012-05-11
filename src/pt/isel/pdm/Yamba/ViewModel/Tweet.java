@@ -1,10 +1,9 @@
-package pt.isel.pdm.Yamba.ViewModel;
+package pt.isel.pdm.yamba.ViewModel;
 
 import java.util.Calendar;
 import java.util.Date;
 
 import winterwell.jtwitter.Twitter.Status;
-
 import android.os.Parcel;
 import android.os.Parcelable;
 

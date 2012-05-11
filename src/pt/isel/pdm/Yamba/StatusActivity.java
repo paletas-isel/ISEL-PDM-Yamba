@@ -1,7 +1,7 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.StatusPublishedListener;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
 import winterwell.jtwitter.Twitter.Status;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -13,7 +13,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class StatusActivity extends MenuActivity implements OnClickListener, TextWatcher, OnSharedPreferenceChangeListener, StatusPublishedListener {
 	private static final String TAG = "PDM";

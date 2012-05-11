@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
 import java.text.DateFormat;
 import java.text.FieldPosition;

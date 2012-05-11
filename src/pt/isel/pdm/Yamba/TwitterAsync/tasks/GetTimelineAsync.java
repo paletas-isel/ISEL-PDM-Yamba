@@ -1,11 +1,10 @@
-package pt.isel.pdm.Yamba.TwitterAsync.tasks;
+package pt.isel.pdm.yamba.TwitterAsync.tasks;
 
 import java.util.List;
 
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsyncTask;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.TimelineObtainedListener;
-
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsyncTask;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
 import winterwell.jtwitter.Twitter;
 
 public class GetTimelineAsync extends TwitterAsyncTask<String, List<winterwell.jtwitter.Twitter.Status>, Void>{

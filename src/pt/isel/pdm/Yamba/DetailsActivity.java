@@ -1,8 +1,8 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
 import java.text.SimpleDateFormat;
 
-import pt.isel.pdm.Yamba.ViewModel.Tweet;
+import pt.isel.pdm.yamba.ViewModel.Tweet;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

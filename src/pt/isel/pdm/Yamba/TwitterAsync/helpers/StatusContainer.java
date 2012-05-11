@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba.TwitterAsync.helpers;
+package pt.isel.pdm.yamba.TwitterAsync.helpers;
 
 public class StatusContainer {
 	

@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

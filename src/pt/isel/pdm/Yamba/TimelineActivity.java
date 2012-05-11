@@ -1,11 +1,11 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.TimelineObtainedListener;
-import pt.isel.pdm.Yamba.ViewModel.Tweet;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
+import pt.isel.pdm.yamba.ViewModel.Tweet;
 import winterwell.jtwitter.Twitter.Status;
 import android.content.Intent;
 import android.content.SharedPreferences;

@@ -1,10 +1,10 @@
-package pt.isel.pdm.Yamba;
+package pt.isel.pdm.yamba;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.content.Intent;
 
 public abstract class MenuActivity extends Activity{
 

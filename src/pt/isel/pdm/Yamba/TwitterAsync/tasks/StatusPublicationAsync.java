@@ -1,9 +1,9 @@
-package pt.isel.pdm.Yamba.TwitterAsync.tasks;
+package pt.isel.pdm.yamba.TwitterAsync.tasks;
 
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsync;
-import pt.isel.pdm.Yamba.TwitterAsync.TwitterAsyncTask;
-import pt.isel.pdm.Yamba.TwitterAsync.helpers.StatusContainer;
-import pt.isel.pdm.Yamba.TwitterAsync.listeners.StatusPublishedListener;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.TwitterAsyncTask;
+import pt.isel.pdm.yamba.TwitterAsync.helpers.StatusContainer;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
 import winterwell.jtwitter.Twitter;
 
 public class StatusPublicationAsync extends TwitterAsyncTask<StatusContainer, Twitter.Status, Void> {

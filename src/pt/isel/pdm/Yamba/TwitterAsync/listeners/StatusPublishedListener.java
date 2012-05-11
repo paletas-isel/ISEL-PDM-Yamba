@@ -1,4 +1,4 @@
-package pt.isel.pdm.Yamba.TwitterAsync.listeners;
+package pt.isel.pdm.yamba.TwitterAsync.listeners;
 
 import winterwell.jtwitter.Twitter.Status;
 
