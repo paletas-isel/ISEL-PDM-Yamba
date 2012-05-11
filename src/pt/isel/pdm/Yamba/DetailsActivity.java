@@ -52,7 +52,5 @@ public class DetailsActivity extends Activity{
 		else {
 			findViewById(R.layout.error).setVisibility(View.VISIBLE);
 		}			
-	}
-
-		
+	}		
 }

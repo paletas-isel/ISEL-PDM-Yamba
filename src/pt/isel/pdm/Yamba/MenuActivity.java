@@ -46,6 +46,10 @@ public abstract class MenuActivity extends Activity{
 	        	intent = new Intent(this, YambaPreference.class);
 	    		startActivity(intent);	        	
 	        	break;
+	        case R.id.show_user_info:
+	        	intent = new Intent(this, UserInfoActivity.class);
+	    		startActivity(intent);	        	
+	        	break;
 	    }		
 	    return true;
 	}

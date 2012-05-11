@@ -210,7 +210,6 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
 
 		_reload = true;
-		
 		updatePreferences(arg1);		
 	}
 

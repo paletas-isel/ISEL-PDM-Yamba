@@ -17,7 +17,8 @@ public class LauncherActivity extends Activity{
 			intent = new Intent(this, YambaPreference.class);
 		}
 		else {
-			intent = new Intent(this, TimelineActivity.class);
+			//intent = new Intent(this, TimelineActivity.class);
+			intent = new Intent(this, UserInfoActivity.class);
 		}
 		
 		startActivity(intent);
