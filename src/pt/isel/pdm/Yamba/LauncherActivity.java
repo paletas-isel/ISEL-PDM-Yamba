@@ -18,7 +18,7 @@ public class LauncherActivity extends Activity{
 		}
 		else {
 			//intent = new Intent(this, TimelineActivity.class);
-			intent = new Intent(this, UserInfoActivity.class);
+			intent = new Intent(this, TimelineActivity.class);
 		}
 		
 		startActivity(intent);

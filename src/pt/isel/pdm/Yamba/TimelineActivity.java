@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 public class TimelineActivity extends MenuActivity implements OnSharedPreferenceChangeListener, OnItemClickListener, TimelineObtainedListener{
 
 	private static final TweetDateFormat _DateFormat = new TweetDateFormat();

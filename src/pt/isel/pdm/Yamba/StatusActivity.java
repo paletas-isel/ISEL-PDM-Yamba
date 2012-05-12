@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class StatusActivity extends MenuActivity implements OnClickListener, TextWatcher, OnSharedPreferenceChangeListener, StatusPublishedListener {
 	private static final String TAG = "PDM";
 	private Button submit;
@@ -91,7 +92,7 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
 	private void updateStatus() {		
 		long startTm = System.currentTimeMillis();
 		
-		twitter.updateStatusAsync(text.getText().toString());
+		twitter.updateStatusAsync(this, text.getText().toString());
 		
 		long elapsedTm = System.currentTimeMillis()-startTm;
     	Log.d(TAG,"Submited. Elapsed time="+elapsedTm+", text="+text);

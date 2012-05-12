@@ -13,6 +13,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import android.widget.Toast;
 
+
 public class YambaApplication extends Application{
 
 	private static final String _ServiceUriKey = "serviceUri";
@@ -23,9 +24,15 @@ public class YambaApplication extends Application{
 	
 	private OnSharedPreferenceChangeListener _preferenceListener;
 	
+	private static YambaApplication _application;
+	
+	public static YambaApplication getApplication() { return _application; }
+	
 	@Override
 	public void onCreate() {	
 
+		_application = this;
+		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 			
 		_preferenceListener = new OnSharedPreferenceChangeListener() {

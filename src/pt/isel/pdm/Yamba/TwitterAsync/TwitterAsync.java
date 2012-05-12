@@ -2,12 +2,17 @@ package pt.isel.pdm.yamba.TwitterAsync;
 
 import java.lang.ref.WeakReference;
 
+import android.content.Context;
+import android.content.Intent;
+
+import pt.isel.pdm.yamba.YambaApplication;
+import pt.isel.pdm.yamba.TwitterAsync.helpers.IntentHelpers;
 import pt.isel.pdm.yamba.TwitterAsync.helpers.StatusContainer;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TwitterExceptionListener;
+import pt.isel.pdm.yamba.TwitterAsync.services.StatusUploadService;
 import pt.isel.pdm.yamba.TwitterAsync.tasks.GetTimelineAsync;
-import pt.isel.pdm.yamba.TwitterAsync.tasks.StatusPublicationAsync;
 import pt.isel.pdm.yamba.exceptions.TwitterException;
 import winterwell.jtwitter.Twitter;
 
@@ -19,7 +24,7 @@ public class TwitterAsync {
 	
 	private static Twitter _Connection;
 	
-	Twitter getInnerConnection() {
+	public Twitter getInnerConnection() {
 		if(_Connection == null || !_Connection.isValidLogin()) {
 			_Connection = new Twitter(_Username, _Password);
 			_Connection.setAPIRootUrl(_ServiceUri);
@@ -87,18 +92,20 @@ public class TwitterAsync {
 		return _statusPublishedListener.get();
 	}
 	
-	public void updateStatusAsync(String statusText, long inReplyToStatusId)
+	public void updateStatusAsync(Context context, String statusText, long inReplyToStatusId)
 			throws TwitterException {
-
-		StatusPublicationAsync task = new StatusPublicationAsync(this);
-		task.execute(StatusContainer.create(statusText, inReplyToStatusId));
+		
+		Intent intent = IntentHelpers.generateIntentWithParams(context, StatusUploadService.class, StatusUploadService.PARAM_TAG, StatusContainer.create(statusText, inReplyToStatusId));
+				
+		context.startService(intent);
 	}
 
-	public void updateStatusAsync(String statusText) {		
+	public void updateStatusAsync(Context context, String statusText) {		
 
-		StatusPublicationAsync task = new StatusPublicationAsync(this);
-		task.execute(StatusContainer.create(statusText));
-	}	
+		Intent intent = IntentHelpers.generateIntentWithParams(context, StatusUploadService.class, StatusUploadService.PARAM_TAG, StatusContainer.create(statusText));
+				
+		context.startService(intent);
+	}		
 	
 	/*
 	 * GET TIMELINE
