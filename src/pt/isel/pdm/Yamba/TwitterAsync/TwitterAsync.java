@@ -2,9 +2,6 @@ package pt.isel.pdm.yamba.TwitterAsync;
 
 import java.lang.ref.WeakReference;
 
-import android.content.Context;
-import android.content.Intent;
-
 import pt.isel.pdm.yamba.TwitterAsync.helpers.IntentHelpers;
 import pt.isel.pdm.yamba.TwitterAsync.helpers.StatusContainer;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
@@ -14,6 +11,8 @@ import pt.isel.pdm.yamba.TwitterAsync.services.GetTimelineService;
 import pt.isel.pdm.yamba.TwitterAsync.services.StatusUploadService;
 import pt.isel.pdm.yamba.exceptions.TwitterException;
 import winterwell.jtwitter.Twitter;
+import android.content.Context;
+import android.content.Intent;
 
 public class TwitterAsync {
 		
@@ -34,6 +33,10 @@ public class TwitterAsync {
 	public synchronized static void setServiceUri(String uri) {
 		_Connection = null;		
 		_ServiceUri = uri;
+	}
+	
+	public synchronized static String getUsername() {
+		return _Username;
 	}
 	
 	public synchronized static void setUsername(String username) {
