@@ -20,7 +20,10 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 	public final static String PARAM_TAG = "PARAM_TAG";
 	
 	private Iterable<Twitter.Status> _timeline;
-	private int _refreshDelay; 	
+	private int _refreshDelay, _savedEntriesCount;
+	private boolean _enableAutoRefresh;
+	
+	private long _lastSchedule;
 	
 	private SharedPreferences _preferences;
 	
@@ -31,6 +34,8 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		_preferences.registerOnSharedPreferenceChangeListener(this);
 		
 		_refreshDelay = Integer.parseInt(_preferences.getString(YambaPreference.TIMELINEREFRESHRATE_PREFERENCE, null));
+		_enableAutoRefresh = _preferences.getBoolean(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE, false);
+		_savedEntriesCount = Integer.parseInt(_preferences.getString(YambaPreference.TIMELINEMAXENTRIES_PREFERENCE, null));
 		
 		super.onCreate();
 	}
@@ -53,8 +58,8 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		public void run() {
 			Twitter connection = _twitterAsync.getInnerConnection();
 			
-			_timeline = connection.getUserTimeline();
-			
+			_timeline = connection.getUserTimeline().subList(0, _savedEntriesCount);
+									
 			_handler.post(new Thread() {
 				
 				@Override
@@ -66,7 +71,7 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 					}
 				}				
 			});
-		}			
+		}		
 	};
 	
 	@Override
@@ -80,6 +85,10 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 			_timer.purge();
 		}
 		
+		if(_enableAutoRefresh)
+			scheduleLooped();
+		else
+			scheduleOnce();
 		_timer.scheduleAtFixedRate(_task, 0, _refreshDelay);
 				
 		if(_timeline != null) 
@@ -97,7 +106,36 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		
 			_timer.cancel();
 			_timer.scheduleAtFixedRate(_task, 0, _refreshDelay);
-		}		
-	}
+		}	
+		else if(arg1.equals(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE)) {
 
+			_enableAutoRefresh = _preferences.getBoolean(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE, false);
+		
+			_timer.cancel();
+			if(_enableAutoRefresh)
+				scheduleLooped();
+			else
+				scheduleOnce();
+		}
+		else if(arg1.equals(YambaPreference.TIMELINEMAXENTRIES_PREFERENCE)) {
+
+			_savedEntriesCount = Integer.parseInt(_preferences.getString(YambaPreference.TIMELINEMAXENTRIES_PREFERENCE, null));
+		}
+	}
+	
+	private void scheduleLooped() {
+		long curr, left = (curr = System.currentTimeMillis()) - _lastSchedule;
+		if(left < 0) left = 0;
+		
+		_timer.scheduleAtFixedRate(_task, left, _refreshDelay);		
+		_lastSchedule = curr;
+	}
+	
+	private void scheduleOnce() {
+		long curr, left = (curr = System.currentTimeMillis()) - _lastSchedule;
+		if(left < 0) left = 0;
+		
+		_timer.schedule(_task, left);		
+		_lastSchedule = curr;		
+	}
 }

@@ -40,6 +40,11 @@
 		    android:defaultValue="1000"
 		    android:inputType="number"/>
 	    
+	    <CheckBoxPreference android:title="@string/preferenceAutoTimelineRefreshName"
+	        android:summary="@string/preferenceAutoTimelineRefreshSummary"
+		    android:key="timelineAutoRefresh"
+		    android:defaultValue="true"/>
+	    
 	</PreferenceCategory>
   
 </PreferenceScreen>
