@@ -14,4 +14,18 @@ public class IntentHelpers {
 		return intent;
 	}
 	
+	public static <A extends Parcelable> Intent generateIntentWithString(Context context, Class<?> target, String paramTag, String params) {
+		
+		Intent intent = new Intent(context, target);
+		intent.putExtra(paramTag, params);
+		
+		return intent;
+	}
+	
+	public static Intent generateIntent(Context context, Class<?> target) {
+		
+		Intent intent = new Intent(context, target);
+		
+		return intent;
+	}	
 }
