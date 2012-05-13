@@ -52,7 +52,4 @@ public class GetTimelineAsync extends TwitterAsyncTask<String, List<winterwell.j
 		
 		super.onProgressUpdate(values);
 	}
-	
-	
-
 }

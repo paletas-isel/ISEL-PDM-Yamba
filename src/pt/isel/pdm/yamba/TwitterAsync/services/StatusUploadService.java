@@ -36,9 +36,10 @@ public class StatusUploadService extends Service {
 		protected Void doInBackground(StatusContainer... params) {
 			
 			Twitter connection = _twitterAsync.getInnerConnection();
+
+			Twitter.Status s;			
 			
 			for(StatusContainer status : params) {
-				Twitter.Status s;			
 				if(status.isReply()) {
 					s = connection.updateStatus(status.getStatus(), status.inReplyTo());
 				}
@@ -48,6 +49,8 @@ public class StatusUploadService extends Service {
 				
 				publishProgress(s);
 			}
+			
+			stopSelf();
 			
 			return null;
 		}
@@ -72,7 +75,7 @@ public class StatusUploadService extends Service {
 		
 		StatusContainer params = intent.getParcelableExtra(PARAM_TAG);
 		
-		_task.execute(params);
+		if(params != null) _task.execute(params);
 			
 		return Service.START_REDELIVER_INTENT;
 	}

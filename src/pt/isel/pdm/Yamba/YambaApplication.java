@@ -15,10 +15,6 @@ import android.widget.Toast;
 
 
 public class YambaApplication extends Application{
-
-	private static final String _ServiceUriKey = "serviceUri";
-	private static final String _PasswordKey = "password";
-	private static final String _UsernameKey = "username";
 	
 	public static final String TweetExtra = "TWEET_EXTRA";
 	
@@ -41,15 +37,15 @@ public class YambaApplication extends Application{
 			public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
 					String key) {
 
-				if(key.equalsIgnoreCase(_ServiceUriKey)) {
+				if(key.equalsIgnoreCase(YambaPreference.SERVICEURI_PREFERENCE)) {
 					
 					TwitterAsync.setServiceUri(sharedPreferences.getString(key, null));
 					
-				} else if(key.equalsIgnoreCase(_UsernameKey)) {
+				} else if(key.equalsIgnoreCase(YambaPreference.USERNAME_PREFERENCE)) {
 					
 					TwitterAsync.setUsername(sharedPreferences.getString(key, null));
 					
-				} else if(key.equalsIgnoreCase(_PasswordKey)) {
+				} else if(key.equalsIgnoreCase(YambaPreference.PASSWORD_PREFERENCE)) {
 					
 					TwitterAsync.setPassword(sharedPreferences.getString(key, null));
 					
@@ -60,9 +56,9 @@ public class YambaApplication extends Application{
 		
 		preferences.registerOnSharedPreferenceChangeListener(_preferenceListener);
 		
-		TwitterAsync.setServiceUri(PreferenceManager.getDefaultSharedPreferences(this).getString(_ServiceUriKey, null));
-		TwitterAsync.setUsername(PreferenceManager.getDefaultSharedPreferences(this).getString(_UsernameKey, null));
-		TwitterAsync.setPassword(PreferenceManager.getDefaultSharedPreferences(this).getString(_PasswordKey, null));
+		TwitterAsync.setServiceUri(PreferenceManager.getDefaultSharedPreferences(this).getString(YambaPreference.SERVICEURI_PREFERENCE, null));
+		TwitterAsync.setUsername(PreferenceManager.getDefaultSharedPreferences(this).getString(YambaPreference.USERNAME_PREFERENCE, null));
+		TwitterAsync.setPassword(PreferenceManager.getDefaultSharedPreferences(this).getString(YambaPreference.PASSWORD_PREFERENCE, null));
 		
 		final Context context = this;
 		TwitterAsync.setTwitterExceptionListener(new TwitterExceptionListener() {

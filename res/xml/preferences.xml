@@ -34,6 +34,12 @@
 		    android:defaultValue="140"
 		    android:inputType="number" />
 	    
+	    <EditTextPreference android:title="@string/preferenceTimelineRefreshName"
+	        android:summary="@string/preferenceTimelineRefreshSummary"
+		    android:key="timelineRefresh"
+		    android:defaultValue="1000"
+		    android:inputType="number"/>
+	    
 	</PreferenceCategory>
   
 </PreferenceScreen>

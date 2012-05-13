@@ -18,6 +18,8 @@
     <string name="preferenceTimelineEntriesName">Max Shown Entries</string>
     <string name="preferenceStatusCharactersSummary">The maximum size of a status.</string>
     <string name="preferenceStatusCharactersName">Status Maximum Size</string>
+    <string name="preferenceTimelineRefreshSummary">The refresh interval on the timeline, in milliseconds.</string>
+    <string name="preferenceTimelineRefreshName">Timeline Refresh Rate</string>
     <string name="preferenceServiceCategory">Service</string>
     <string name="preferenceApplicationCategory">Application</string>
     

@@ -5,14 +5,13 @@ import java.lang.ref.WeakReference;
 import android.content.Context;
 import android.content.Intent;
 
-import pt.isel.pdm.yamba.YambaApplication;
 import pt.isel.pdm.yamba.TwitterAsync.helpers.IntentHelpers;
 import pt.isel.pdm.yamba.TwitterAsync.helpers.StatusContainer;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.StatusPublishedListener;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TwitterExceptionListener;
+import pt.isel.pdm.yamba.TwitterAsync.services.GetTimelineService;
 import pt.isel.pdm.yamba.TwitterAsync.services.StatusUploadService;
-import pt.isel.pdm.yamba.TwitterAsync.tasks.GetTimelineAsync;
 import pt.isel.pdm.yamba.exceptions.TwitterException;
 import winterwell.jtwitter.Twitter;
 
@@ -126,16 +125,18 @@ public class TwitterAsync {
 		_timelineObtainedListener = null;
 	}	
 	
-	public void getUserTimelineAsync() {
+	public void getUserTimelineAsync(Context context) {
 		
-		GetTimelineAsync task = new GetTimelineAsync(this);
-		task.execute();
+		Intent intent = IntentHelpers.generateIntent(context, GetTimelineService.class);
+
+		context.startService(intent);
 	}
 	
-	public void getUserTimelineAsync(String user) {
+	public void getUserTimelineAsync(Context context, String user) {
 		
-		GetTimelineAsync task = new GetTimelineAsync(this);
-		task.execute(user);
+		Intent intent = IntentHelpers.generateIntentWithString(context, GetTimelineService.class, StatusUploadService.PARAM_TAG, user);
+
+		context.startService(intent);
 	}
 	
 	

@@ -166,7 +166,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 		if(item.getItemId() == R.id.refresh_timeline) {		
 			
 			setLoading();			
-			_client.getUserTimelineAsync();				
+			_client.getUserTimelineAsync(this);				
 		}
 
 		return super.onOptionsItemSelected(item);
@@ -179,7 +179,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 		_client.setTimelineObtainedListener(this);		
 		if(_reload) {				
 			setLoading();
-			_client.getUserTimelineAsync();
+			_client.getUserTimelineAsync(this);
 		}
 		else {
 			if(_data != null)
@@ -224,7 +224,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 	}
 
 	@Override
-	public void onTimelineObtained(List<Status> timeline) {
+	public void onTimelineObtained(Iterable<Status> timeline) {
 		setLoaded();
 		
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
