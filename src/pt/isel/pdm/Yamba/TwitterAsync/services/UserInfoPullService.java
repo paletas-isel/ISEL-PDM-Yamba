@@ -25,7 +25,8 @@ public class UserInfoPullService extends Service implements UserInfoParams {
 
 	public static final int GET_USER_INFO = 0;
 
-	public static final String GET_USER_NAME_BUNDLE_KEY = "UserName",
+	public static final String 
+			GET_USER_NAME_BUNDLE_KEY = "UserName",
 			GET_STATUS_COUNT_BUNDLE_KEY = "Status",
 			GET_SUBSCRIBERS_COUNT_BUNDLE_KEY = "Subscribers",
 			GET_SUBSCRIPTIONS_COUNT_BUNDLE_KEY = "Subscriptions";
