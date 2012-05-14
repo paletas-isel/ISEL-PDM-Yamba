@@ -157,6 +157,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
     protected void doModifyMenu(Menu menu) {
 		_refreshMenuItem = menu.findItem(R.id.refresh_timeline);
 		enableMenuItem(menu, R.id.create_status);
+    	enableMenuItem(menu, R.id.show_user_info);
 		
 		if(_menuState) enableMenuItem(menu, R.id.refresh_timeline);
     }	

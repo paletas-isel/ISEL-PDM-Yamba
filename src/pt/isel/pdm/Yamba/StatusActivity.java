@@ -81,6 +81,7 @@ public class StatusActivity extends MenuActivity implements OnClickListener, Tex
     protected void doModifyMenu(Menu menu) {
     	
     	enableMenuItem(menu, R.id.show_timeline);
+    	enableMenuItem(menu, R.id.show_user_info);
     }
     
 	public void onClick(View v) {

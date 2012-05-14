@@ -89,7 +89,6 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 			scheduleLooped();
 		else
 			scheduleOnce();
-		_timer.scheduleAtFixedRate(_task, 0, _refreshDelay);
 				
 		if(_timeline != null) 
 			_twitterAsync.getTimelineObtainedListener().onTimelineObtained(_timeline);

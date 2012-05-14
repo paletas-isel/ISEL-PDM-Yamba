@@ -79,7 +79,8 @@ public class UserInfoActivity extends MenuActivity
 	
 	@Override
     protected void doModifyMenu(Menu menu) {
-    	enableMenuItem(menu, R.id.show_user_info);
+    	enableMenuItem(menu, R.id.show_timeline);
+    	enableMenuItem(menu, R.id.create_status);
     }
 	
 	private void fillActivityWithUserInfo()
