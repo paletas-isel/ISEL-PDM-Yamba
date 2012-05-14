@@ -11,6 +11,7 @@ public class YambaPreference extends PreferenceActivity{
 	public final static String STATUSMAXCHAR_PREFERENCE = "maxCharStatus";
 	public final static String TIMELINEMAXENTRIES_PREFERENCE = "maxTimelineEntries";
 	public final static String TIMELINEREFRESHRATE_PREFERENCE = "timelineRefresh";
+	public final static String TIMELINEAUTOREFRESH_PREFERENCE = "timelineAutoRefresh";
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
