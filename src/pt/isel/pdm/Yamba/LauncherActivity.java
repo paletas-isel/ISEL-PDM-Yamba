@@ -13,11 +13,11 @@ public class LauncherActivity extends Activity{
 		
 		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		Intent intent;
+		
 		if(preferences.getString("username", null) == null) {			
 			intent = new Intent(this, YambaPreference.class);
 		}
 		else {
-			//intent = new Intent(this, TimelineActivity.class);
 			intent = new Intent(this, TimelineActivity.class);
 		}
 		

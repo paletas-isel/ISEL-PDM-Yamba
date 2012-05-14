@@ -1,39 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-	
-  	<TextView
-        android:layout_width="fill_parent"  android:layout_height="wrap_content"
-        android:layout_margin="10dp" android:gravity="center"
-        android:text="@string/userInfoTitle" android:textSize="32sp"
-        android:textColor="#AA0"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="@string/userInfoTitle"
+        android:textColor="#AA0"
+        android:textSize="32sp" />
+
+    <!-- Username -->
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="left"
+        android:text="@string/userInfoNameLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/userInfoName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/userInfoDefaultName"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
-      <TextView
-	     android:layout_width="fill_parent"
-	     android:layout_height="wrap_content"
-	     android:text="@string/userInfoNameLabel"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:layout_gravity="left"/>    
-	     
+    <!-- Status -->
      <TextView
-	     android:layout_width="fill_parent"
-	     android:layout_height="wrap_content"
-	     android:id="@+id/userInfoName"
-	     android:text="@string/userInfoDefaultName"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:layout_gravity="left"/> 
-	     
-     <TextView
-	     android:layout_width="fill_parent"
-	     android:layout_height="wrap_content"
-	     android:id="@+id/userInfoName"
-	     android:text="@string/userInfoDefaultName"
-	     android:textAppearance="?android:attr/textAppearanceLarge"
-	     android:layout_gravity="left"/> 
-	     
-     
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="left"
+        android:text="@string/userInfoStatusLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/userInfoStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/userInfoDefaultStatus"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
+    <!-- Subscribers -->
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="left"
+        android:text="@string/userInfoSubscribersLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/userInfoSubscribers"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/userInfoDefaultSubscribers"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <!--  Subscriptions -->
+     <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="left"
+        android:text="@string/userInfoSubscriptionsLabel"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/userInfoSubscriptions"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="@string/userInfoDefaultSubscriptions"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
 </LinearLayout>

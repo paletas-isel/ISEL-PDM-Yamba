@@ -48,4 +48,10 @@
     <string name="userInfoTitle">User Info</string>
     <string name="userInfoNameLabel">Name</string>
     <string name="userInfoDefaultName"> </string>
+    <string name="userInfoStatusLabel">Status</string>
+    <string name="userInfoDefaultStatus">0</string>
+    <string name="userInfoSubscriptionsLabel">Subscriptions</string>
+    <string name="userInfoDefaultSubscriptions">0</string>
+    <string name="userInfoSubscribersLabel">Subscribers</string>
+    <string name="userInfoDefaultSubscribers">0</string>
 </resources>

@@ -23,6 +23,7 @@ public class TwitterAsync {
 	private static Twitter _Connection;
 	
 	public Twitter getInnerConnection() {
+		
 		if(_Connection == null || !_Connection.isValidLogin()) {
 			_Connection = new Twitter(_Username, _Password);
 			_Connection.setAPIRootUrl(_ServiceUri);
@@ -141,7 +142,6 @@ public class TwitterAsync {
 
 		context.startService(intent);
 	}
-	
 	
 	/*
 	 * SINGLETON

@@ -22,7 +22,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <service android:name=".TwitterAsync.services.GetTimelineService"></service>
         <service android:name=".TwitterAsync.services.StatusUploadService"></service>
+        <service android:name=".TwitterAsync.services.UserInfoPullService" android:process="pt.isel.pdm.yamba.userinfopull"></service>
     </application>
 </manifest>
