@@ -1,5 +1,7 @@
 package pt.isel.pdm.yamba;
 
+import pt.isel.pdm.yamba.TwitterAsync.listeners.GetUserInfoCompletedListener;
+import pt.isel.pdm.yamba.TwitterAsync.services.AsyncUserInfoPullService;
 import pt.isel.pdm.yamba.TwitterAsync.services.UserInfoPullService;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,7 @@ public class UserInfoActivity extends MenuActivity
 {
 	private AsyncUserInfoPullService _params;
 	
-	private IGetUserInfoCompletedListener _listener;
+	private GetUserInfoCompletedListener _listener;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class UserInfoActivity extends MenuActivity
 		
 		if(_listener == null)
 		{
-			_listener = new IGetUserInfoCompletedListener() {
+			_listener = new GetUserInfoCompletedListener() {
 		
 				@Override
 				public void onGetUsernameCompleted(String username) {

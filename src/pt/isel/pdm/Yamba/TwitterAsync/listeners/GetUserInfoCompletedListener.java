@@ -1,6 +1,6 @@
-package pt.isel.pdm.yamba;
+package pt.isel.pdm.yamba.TwitterAsync.listeners;
 
-public interface IGetUserInfoCompletedListener {
+public interface GetUserInfoCompletedListener {
 
 	public void onGetUsernameCompleted(String username);
 	

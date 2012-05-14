@@ -1,6 +1,6 @@
-package pt.isel.pdm.yamba;
+package pt.isel.pdm.yamba.TwitterAsync.helpers;
 
-public interface IUserInfoParams {
+public interface UserInfoParams {
 
 	public String getUserName();
 	

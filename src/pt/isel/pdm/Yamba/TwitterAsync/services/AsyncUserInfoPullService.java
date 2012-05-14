@@ -1,6 +1,7 @@
-package pt.isel.pdm.yamba;
+package pt.isel.pdm.yamba.TwitterAsync.services;
 
-import pt.isel.pdm.yamba.TwitterAsync.services.UserInfoPullService;
+import pt.isel.pdm.yamba.TwitterAsync.AsyncUserInfoParams;
+import pt.isel.pdm.yamba.TwitterAsync.listeners.GetUserInfoCompletedListener;
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.Handler;
@@ -10,7 +11,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-public class AsyncUserInfoPullService implements ServiceConnection, IAsyncUserInfoParams
+public class AsyncUserInfoPullService implements ServiceConnection, AsyncUserInfoParams
 {
 	private static final String TAG = AsyncUserInfoPullService.class.getName();
 
@@ -50,7 +51,7 @@ public class AsyncUserInfoPullService implements ServiceConnection, IAsyncUserIn
 	}
 
 	@Override
-	public void getUserInfo(final IGetUserInfoCompletedListener listener) {
+	public void getUserInfo(final GetUserInfoCompletedListener listener) {
 		
 		sendOperation
 		(

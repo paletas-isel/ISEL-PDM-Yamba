@@ -1,7 +1,7 @@
 package pt.isel.pdm.yamba.TwitterAsync.services;
 
-import pt.isel.pdm.yamba.IUserInfoParams;
 import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
+import pt.isel.pdm.yamba.TwitterAsync.helpers.UserInfoParams;
 import winterwell.jtwitter.Twitter;
 import android.app.Service;
 import android.content.Intent;
@@ -13,7 +13,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.util.Log;
 
-public class UserInfoPullService extends Service implements IUserInfoParams {
+public class UserInfoPullService extends Service implements UserInfoParams {
 	private static final String TAG = UserInfoPullService.class.getName();
 
 	private static void log(String txt) {
