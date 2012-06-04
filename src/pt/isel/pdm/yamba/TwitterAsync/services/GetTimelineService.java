@@ -1,5 +1,7 @@
 package pt.isel.pdm.yamba.TwitterAsync.services;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -7,6 +9,7 @@ import pt.isel.pdm.yamba.YambaPreference;
 import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
 import winterwell.jtwitter.Twitter;
+import winterwell.jtwitter.Twitter.Status;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -58,7 +61,18 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		public void run() {
 			Twitter connection = _twitterAsync.getInnerConnection();
 			
-			_timeline = connection.getUserTimeline().subList(0, _savedEntriesCount);
+			_timeline = null;
+					
+			List<Status> list =	connection.getUserTimeline();
+			
+			if(list.size() == 0)
+			{
+				_timeline = Collections.EMPTY_LIST;
+			}
+			else
+			{
+				_timeline = list.subList(0, (list.size() >= _savedEntriesCount)?_savedEntriesCount:list.size());
+			}
 									
 			_handler.post(new Thread() {
 				
@@ -123,7 +137,9 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 	}
 	
 	private void scheduleLooped() {
-		long curr, left = (curr = System.currentTimeMillis()) - _lastSchedule;
+		long curr = System.currentTimeMillis(),
+			 left = (_lastSchedule == 0)?0:curr-_lastSchedule;
+		
 		if(left < 0) left = 0;
 		
 		_timer.scheduleAtFixedRate(_task, left, _refreshDelay);		
@@ -131,7 +147,9 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 	}
 	
 	private void scheduleOnce() {
-		long curr, left = (curr = System.currentTimeMillis()) - _lastSchedule;
+		long curr = System.currentTimeMillis(),
+		     left = (_lastSchedule == 0)?0:curr-_lastSchedule;
+			
 		if(left < 0) left = 0;
 		
 		_timer.schedule(_task, left);		

@@ -38,23 +38,24 @@ public class UserInfoPullService extends Service implements UserInfoParams {
 		public void handleMessage(Message msg) {
 
 			switch (msg.what) {
-			case GET_USER_INFO:
-
-				UserInfoPullService.this._user = TwitterAsync.connect()
-						.getInnerConnection()
-						.getUser(TwitterAsync.getUsername());
-
-				sendResponse(
-						msg, 
-						getUserName(), 
-						getStatusCount(),
-						getSubscribersCount(), 
-						getSubscriptionsCount()
-				);
 				
-				_user = null;
-				
-				break;
+				case GET_USER_INFO:
+	
+					UserInfoPullService.this._user = TwitterAsync.connect()
+							.getInnerConnection()
+							.getUser(TwitterAsync.getUsername());
+	
+					sendResponse(
+							msg, 
+							getUserName(), 
+							getStatusCount(),
+							getSubscribersCount(), 
+							getSubscriptionsCount()
+					);
+					
+					_user = null;
+					
+					break;
 
 			default:
 				super.handleMessage(msg);

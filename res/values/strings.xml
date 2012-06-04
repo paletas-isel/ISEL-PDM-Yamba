@@ -56,4 +56,8 @@
     <string name="userInfoDefaultSubscriptions">0</string>
     <string name="userInfoSubscribersLabel">Subscribers</string>
     <string name="userInfoDefaultSubscribers">0</string>
+    
+    <!--  Email -->
+    <string name="emailChooserLabel">Choose an Email client :</string>
+    
 </resources>
