@@ -4,8 +4,7 @@ import pt.isel.pdm.email.Email;
 import pt.isel.pdm.email.controller.EmailController;
 import pt.isel.pdm.email.controller.async.AsyncEmailController;
 import pt.isel.pdm.email.controller.async.EmailOperationCallback;
-
-import com.google.common.base.Preconditions;
+import pt.isel.pdm.utils.Preconditions;
 
 public class EmailControllerToAsyncAdapter implements AsyncEmailController{
 
@@ -19,7 +18,8 @@ public class EmailControllerToAsyncAdapter implements AsyncEmailController{
 	}
 	
 	@Override
-	public void sendEmail(Email email, EmailOperationCallback callback) {
+	public boolean sendEmail(Email email, EmailOperationCallback callback) {
 		new EmailControllerSendEmailAsyncTask(_controller, callback).doInBackground(email);
+		return true;
 	}
 }

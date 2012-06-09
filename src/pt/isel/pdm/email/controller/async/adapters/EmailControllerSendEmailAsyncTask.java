@@ -4,9 +4,8 @@ import pt.isel.pdm.email.Email;
 import pt.isel.pdm.email.controller.EmailController;
 import pt.isel.pdm.email.controller.async.EmailOperationCallback;
 import pt.isel.pdm.email.controller.async.EmailOperationResult;
+import pt.isel.pdm.utils.Preconditions;
 import android.os.AsyncTask;
-
-import com.google.common.base.Preconditions;
 
 public class EmailControllerSendEmailAsyncTask extends AsyncTask<Email, Void, EmailOperationResult>{
 

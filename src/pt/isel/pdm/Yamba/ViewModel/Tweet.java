@@ -16,7 +16,7 @@ public class Tweet implements Parcelable{
 	private String _status;
 	private Date _publication;
 	
-	private Tweet(long id, String author, String status, Date publication) {
+	public Tweet(long id, String author, String status, Date publication) {
 		_id = id;
 		_author = author;
 		_status = status;
@@ -57,8 +57,10 @@ public class Tweet implements Parcelable{
 	}
 	
 	public String getStatusSample(int size) {
+		
 		if(_status.length() > size)
 			return String.format("%s...", _status.substring(0, size));
+		
 		return _status;
 	}
 	

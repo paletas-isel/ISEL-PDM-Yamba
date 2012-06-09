@@ -1,13 +1,18 @@
 package pt.isel.pdm.yamba.TwitterAsync.services;
 
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import pt.isel.pdm.java.lang.LazyLoadIterableAdapter;
 import pt.isel.pdm.yamba.YambaPreference;
 import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
+import pt.isel.pdm.yamba.ViewModel.StatusToTweetAdapter;
+import pt.isel.pdm.yamba.ViewModel.Tweet;
+import pt.isel.pdm.yamba.ViewModel.TweetsSqliteDataSource;
 import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.Twitter.Status;
 import android.app.Service;
@@ -22,7 +27,7 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 
 	public final static String PARAM_TAG = "PARAM_TAG";
 	
-	private Iterable<Twitter.Status> _timeline;
+	private Iterable<Tweet> _timeline;
 	private int _refreshDelay, _savedEntriesCount;
 	private boolean _enableAutoRefresh;
 	
@@ -30,9 +35,12 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 	
 	private SharedPreferences _preferences;
 	
+	private TweetsSqliteDataSource _source;
+	
 	@Override
 	public void onCreate() {
-		
+		super.onCreate();
+
 		_preferences = PreferenceManager.getDefaultSharedPreferences(this);
 		_preferences.registerOnSharedPreferenceChangeListener(this);
 		
@@ -40,9 +48,10 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		_enableAutoRefresh = _preferences.getBoolean(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE, false);
 		_savedEntriesCount = Integer.parseInt(_preferences.getString(YambaPreference.TIMELINEMAXENTRIES_PREFERENCE, null));
 		
-		super.onCreate();
+		_source = new TweetsSqliteDataSource(this);
 	}
 
+	
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
@@ -55,38 +64,7 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 	
 	private Timer _timer;
 	
-	private TimerTask _task = new TimerTask() {
-
-		@Override
-		public void run() {
-			Twitter connection = _twitterAsync.getInnerConnection();
-			
-			_timeline = null;
-					
-			List<Status> list =	connection.getUserTimeline();
-			
-			if(list.size() == 0)
-			{
-				_timeline = Collections.EMPTY_LIST;
-			}
-			else
-			{
-				_timeline = list.subList(0, (list.size() >= _savedEntriesCount)?_savedEntriesCount:list.size());
-			}
-									
-			_handler.post(new Thread() {
-				
-				@Override
-				public void run() {
-					
-					TimelineObtainedListener listener = _twitterAsync.getTimelineObtainedListener();
-					if(listener != null && _timeline != null) {
-						listener.onTimelineObtained(_timeline);
-					}
-				}				
-			});
-		}		
-	};
+	
 	
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
@@ -97,6 +75,7 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		else {
 			_timer.cancel();
 			_timer.purge();
+			_timer = new Timer();
 		}
 		
 		if(_enableAutoRefresh)
@@ -118,13 +97,19 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 			_refreshDelay = Integer.parseInt(_preferences.getString(YambaPreference.TIMELINEREFRESHRATE_PREFERENCE, null));
 		
 			_timer.cancel();
-			_timer.scheduleAtFixedRate(_task, 0, _refreshDelay);
+			_timer.purge();
+			_timer = new Timer();
+			_timer.scheduleAtFixedRate(new GetTimelineTimerTask(), 0, _refreshDelay);
+
 		}	
 		else if(arg1.equals(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE)) {
 
 			_enableAutoRefresh = _preferences.getBoolean(YambaPreference.TIMELINEAUTOREFRESH_PREFERENCE, false);
 		
 			_timer.cancel();
+			_timer.purge();
+			_timer = new Timer();
+			
 			if(_enableAutoRefresh)
 				scheduleLooped();
 			else
@@ -142,7 +127,7 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 		
 		if(left < 0) left = 0;
 		
-		_timer.scheduleAtFixedRate(_task, left, _refreshDelay);		
+		_timer.scheduleAtFixedRate(new GetTimelineTimerTask(), left, _refreshDelay);		
 		_lastSchedule = curr;
 	}
 	
@@ -152,7 +137,74 @@ public class GetTimelineService extends Service implements OnSharedPreferenceCha
 			
 		if(left < 0) left = 0;
 		
-		_timer.schedule(_task, left);		
+		_timer.schedule(new GetTimelineTimerTask(), left);		
 		_lastSchedule = curr;		
+	}
+	
+	private class GetTimelineTimerTask extends TimerTask
+	{
+
+		@Override
+		public void run() {
+			
+			Twitter connection = null;
+			
+			_timeline = null;
+			
+			
+			List<Status> list =	null;
+			
+			try
+			{
+				connection = _twitterAsync.getInnerConnection();
+				list = connection.getUserTimeline();
+			}
+			catch(Throwable e)
+			{
+				
+			}
+			
+			if(list == null || list.size() == 0)
+			{
+				_timeline = Collections.EMPTY_LIST;
+			}
+			else
+			{
+				_timeline = new LazyLoadIterableAdapter<Status, Tweet>(list.subList(0, (list.size() >= _savedEntriesCount)?_savedEntriesCount:list.size()), StatusToTweetAdapter.Instance);
+			}
+			
+			try {
+				
+				_source.open();
+			
+				if(_timeline != null)
+				{
+					for(Tweet tweet:_timeline)
+					{
+						_source.create(tweet);
+					}
+				}
+				
+				_timeline = _source.getAll();
+				
+				_source.close();
+			
+			} catch (SQLException e) {
+				
+			}
+			
+			_handler.post(new Thread() {
+				
+				@Override
+				public void run() {
+					
+					TimelineObtainedListener listener = _twitterAsync.getTimelineObtainedListener();
+					if(listener != null && _timeline != null) {
+						listener.onTimelineObtained(_timeline);
+					}
+				}				
+			});			
+		}
+		
 	}
 }

@@ -6,7 +6,6 @@ import java.util.List;
 import pt.isel.pdm.yamba.TwitterAsync.TwitterAsync;
 import pt.isel.pdm.yamba.TwitterAsync.listeners.TimelineObtainedListener;
 import pt.isel.pdm.yamba.ViewModel.Tweet;
-import winterwell.jtwitter.Twitter.Status;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -28,9 +27,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 	private static final TweetDateFormat _DateFormat = new TweetDateFormat();
 
 	private static class TweetHolder {
-		
 		TextView author, status, publicationTime;
-		
 	}
 	
 	private class TweetAdapter extends ArrayAdapter<Tweet> {
@@ -178,6 +175,7 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 		super.onResume();
 
 		_client.setTimelineObtainedListener(this);		
+		
 		if(_reload) {				
 			setLoading();
 			_client.getUserTimelineAsync(this);
@@ -225,16 +223,17 @@ public class TimelineActivity extends MenuActivity implements OnSharedPreference
 	}
 
 	@Override
-	public void onTimelineObtained(Iterable<Status> timeline) {
+	public void onTimelineObtained(Iterable<Tweet> timeline) {
 		setLoaded();
 		
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 		int count = 0;
-		for(Status status : timeline) {
+		for(Tweet tweet : timeline) {
 			count++;
+			
 			if(count > maxEntries) 
 				break;
-			tweets.add(Tweet.createFrom(status));
+			tweets.add(tweet);
 		}
 		
 		_data = tweets;

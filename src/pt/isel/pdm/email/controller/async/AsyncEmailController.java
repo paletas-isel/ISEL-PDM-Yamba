@@ -4,5 +4,5 @@ import pt.isel.pdm.email.Email;
 
 public interface AsyncEmailController {
 
-	public void sendEmail(Email email, EmailOperationCallback callback);
+	public boolean sendEmail(Email email, EmailOperationCallback callback);
 }

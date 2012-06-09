@@ -31,6 +31,7 @@
     
     <!-- Details -->
     <string name="detailsTitle">Detalhes</string>
+    <string name="sendEmailButtonText">Email</string>
     
     <!-- Error -->
     <string name="errorTitle">Erro</string>
